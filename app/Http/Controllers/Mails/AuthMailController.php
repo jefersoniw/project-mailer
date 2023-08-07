@@ -9,15 +9,16 @@ use Illuminate\Support\Facades\Mail;
 
 class AuthMailController extends Controller
 {
-    private $registerMail;
 
-    public function __construct(RegisterMail $registerMail)
+    public function __construct()
     {
-        $this->registerMail = $registerMail;
     }
 
     public function sendRegisterMail()
     {
-        Mail::to('jeferson_chagas25@hotmail.com', 'Jeferson Chagas')->send($this->registerMail);
+        return new RegisterMail([
+            'name' => 'Jeferson Chagas Silva'
+        ]);
+        //Mail::to('jeferson_chagas25@hotmail.com', 'Jeferson Chagas')->send($this->registerMail);
     }
 }

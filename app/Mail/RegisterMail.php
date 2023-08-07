@@ -13,13 +13,14 @@ use Illuminate\Queue\SerializesModels;
 class RegisterMail extends Mailable
 {
     use Queueable, SerializesModels;
+    public $dados;
 
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(array $request = [])
     {
-        //
+        $this->dados = $request;
     }
 
     /**
@@ -38,7 +39,7 @@ class RegisterMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'Mail.register-mail',
+            view: 'Mail.register-mail'
         );
     }
 
