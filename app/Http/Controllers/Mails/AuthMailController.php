@@ -19,10 +19,9 @@ class AuthMailController extends Controller
 
     public function sendRegisterMail()
     {
-
         $this->user->name = 'Jeferson Chagas Silva';
 
-        return new RegisterMail($this->user);
-        //Mail::to('jeferson_chagas25@hotmail.com', 'Jeferson Chagas')->send($this->registerMail);
+        //return new RegisterMail($this->user);
+        Mail::to('jeferson_chagas25@hotmail.com', 'Jeferson Chagas')->send(new RegisterMail($this->user));
     }
 }
