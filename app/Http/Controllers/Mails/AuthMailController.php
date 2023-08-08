@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Mails;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendAuthMail;
 use App\Mail\RegisterMail;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -20,13 +21,10 @@ class AuthMailController extends Controller
     public function sendRegisterMail()
     {
         $this->user->name = 'Jeferson Chagas Silva';
-        $this->user->email = 'jeferson@email.com';
+        $this->user->email = 'jeferson1@email.com';
         $this->user->password = '123456';
         $this->user->save();
 
-        //return new RegisterMail($this->user);
-        Mail::to('jeferson_chagas25@hotmail.com', 'Jeferson Chagas')
-            ->queue(new RegisterMail($this->user));
-        // ->send(new RegisterMail($this->user));
+        SendAuthMail::dispatch($this->user);
     }
 }
